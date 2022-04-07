@@ -3,16 +3,16 @@ use std::mem;
 struct Node<T> {
   elem: T,
   next: Link<T>,
-}
+};
 
 enum Link<T> {
   Empty,
   More(Box<Node<T>>),
-}
+};
 
 pub struct List<T> {
   head: Link<T>,
-}
+};
 impl<T> List<T> {
   // Returns an empty list.
   pub fn new() -> Self {
@@ -40,7 +40,7 @@ impl<T> List<T> {
     }
     res
   }
-}
+};
 impl<T> Drop for List<T> {
   fn drop(&mut self) {
     let mut cur_link = mem::replace(&mut self.head, Link::Empty);
@@ -48,7 +48,7 @@ impl<T> Drop for List<T> {
       cur_link = mem::replace(&mut boxed_node.next, Link::Empty);
     }
   }
-}
+};
 
 
 #[cfg(test)]
