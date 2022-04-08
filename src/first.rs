@@ -19,7 +19,7 @@ impl<T> List<T> {
     List { head: Link::Empty }
   }
 
-  // Pushes an elment to the front of the list.
+  // Pushes an element to the front of the list.
   pub fn push(&mut self, element: T) {
     let new_node = Box::new(Node {
       elem: element,
