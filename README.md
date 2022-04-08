@@ -6,6 +6,4 @@ This is a collection of Linked List implementations in Rust.
 
 I'm not the biggest fan of Linked Lists. Imo there are many better alternatives in Rust (at least for the things I do/am familiar with). But I had some time to ~~procrastinate~~ kill and haven't touched Rust since I started college. 
 
-> Me: Hello, old friend.
-> 
-> Rust: What do you want? -_-
+After working on this, I realized that Rust was not a friend, but an acquaintance I got to know for a fleeting period of time. But that's okay because hopefully I'll get to understand it better.
