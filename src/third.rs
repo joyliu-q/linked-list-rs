@@ -1,6 +1,6 @@
-use std::rc::Rc;
+use std::sync::Arc;
 
-type Link<T> = Option<Rc<Node<T>>>;
+type Link<T> = Option<Arc<Node<T>>>;
 
 struct Node<T> {
   elem: T,
@@ -18,7 +18,7 @@ impl<T> List<T> {
   // Pushes an element to the front of the list.
   pub fn prepend(&self, elem: T) -> List<T> {
     List { 
-      head: Some(Rc::new(Node {
+      head: Some(Arc::new(Node {
         elem: elem,
         next: self.head.clone(),
       }))
@@ -37,7 +37,7 @@ impl<T> Drop for List<T> {
   fn drop(&mut self) {
       let mut head = self.head.take();
       while let Some(rc_node) = head {
-        if let Ok(mut node) = Rc::try_unwrap(rc_node) {
+        if let Ok(mut node) = Arc::try_unwrap(rc_node) {
           head = node.next.take();
         } else {
           break;
