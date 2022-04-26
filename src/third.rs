@@ -19,7 +19,7 @@ impl<T> List<T> {
     pub fn prepend(&self, elem: T) -> List<T> {
         List {
             head: Some(Arc::new(Node {
-                elem: elem,
+                elem,
                 next: self.head.clone(),
             })),
         }
@@ -70,7 +70,11 @@ impl<'a, T> Iterator for Iter<'a, T> {
         })
     }
 }
-
+impl<T> Default for List<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 #[cfg(test)]
 mod test {
     use super::List;

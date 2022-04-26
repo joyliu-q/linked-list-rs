@@ -90,6 +90,11 @@ impl<T> Drop for List<T> {
         }
     }
 }
+impl<T> Default for List<T> {
+    fn default() -> Self {
+        List::new()
+    }
+}
 
 #[cfg(test)]
 mod tests {

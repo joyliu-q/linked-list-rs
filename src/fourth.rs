@@ -11,7 +11,7 @@ struct Node<T> {
 impl<T> Node<T> {
     fn new(elem: T) -> Rc<RefCell<Self>> {
         Rc::new(RefCell::new(Node {
-            elem: elem,
+            elem,
             prev: None,
             next: None,
         }))
@@ -122,6 +122,11 @@ impl<T> Deque<T> {
 impl<T> Drop for Deque<T> {
     fn drop(&mut self) {
         while self.pop_front().is_some() {}
+    }
+}
+impl<T> Default for Deque<T> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

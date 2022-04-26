@@ -149,7 +149,7 @@ impl<T> LinkedList<T> {
 
     pub fn clear(&mut self) {
         // Oh look it's drop again
-        while let Some(_) = self.pop_front() {}
+        while self.pop_front().is_some() {}
     }
 }
 
@@ -323,7 +323,7 @@ impl<'a, T> ExactSizeIterator for Iter<'a, T> {
 impl<T> Drop for LinkedList<T> {
     fn drop(&mut self) {
         // Pop till we drop
-        while let Some(_) = self.pop_front() {}
+        while self.pop_front().is_some() {}
     }
 }
 impl<T> Default for LinkedList<T> {
@@ -362,10 +362,6 @@ impl<T: Debug> Debug for LinkedList<T> {
 impl<T: PartialEq> PartialEq for LinkedList<T> {
     fn eq(&self, other: &Self) -> bool {
         self.len() == other.len() && self.iter().eq(other)
-    }
-
-    fn ne(&self, other: &Self) -> bool {
-        self.len() != other.len() || self.iter().ne(other)
     }
 }
 impl<T: Eq> Eq for LinkedList<T> {}

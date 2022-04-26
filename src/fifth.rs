@@ -25,7 +25,7 @@ impl<T> UnsafeQueue<T> {
     pub fn push(&mut self, elem: T) {
         // Put the box in the right place, and then grab a reference to its Node
         let raw_tail: *mut _ = Box::into_raw(Box::new(Node {
-            elem: elem,
+            elem,
             next: 0 as *mut _, // this is the new last element of the queue
         }));
 
@@ -63,7 +63,12 @@ impl<T> UnsafeQueue<T> {
 }
 impl<T> Drop for UnsafeQueue<T> {
     fn drop(&mut self) {
-        while let Some(_) = self.pop() {}
+        while self.pop().is_some() {}
+    }
+}
+impl<T> Default for UnsafeQueue<T> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
