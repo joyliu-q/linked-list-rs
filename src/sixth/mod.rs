@@ -6,9 +6,10 @@ use std::hash::Hash;
 use std::hash::Hasher;
 use std::cmp::Ordering;
 
-type Link<T> = Option<NonNull<Node<T>>>;
+mod cursor;
+pub type Link<T> = Option<NonNull<Node<T>>>;
 
-struct Node<T> {
+pub struct Node<T> {
   front: Link<T>,
   back: Link<T>,
   elem: T, 
@@ -201,6 +202,7 @@ impl<T> LinkedList<T> {
     }
   }
 }
+
 impl<T> IntoIterator for LinkedList<T> {
   type IntoIter = IntoIter<T>;
   type Item = T;
@@ -223,7 +225,6 @@ impl<T> Iterator for IntoIter<T> {
 }
 
 // Iterator traits
-
 impl<'a, T> IntoIterator for &'a LinkedList<T> {
   type IntoIter = Iter<'a, T>;
   type Item = &'a T;
@@ -396,6 +397,7 @@ impl<T: Hash> Hash for LinkedList<T> {
     }
   }
 }
+
 
 #[cfg(test)]
 mod test {
