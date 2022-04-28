@@ -7,3 +7,4 @@ pub mod sixth;
 
 // random meme lists
 pub mod double;
+pub mod stack_allocated;
