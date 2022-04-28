@@ -9,9 +9,9 @@ pub struct Iter<'a, T> {
 
 impl<'a, T> StackList<'a, T> {
     pub fn push<U>(
-        prev: Option<&'a StackList<'a, T>>, 
-        data: T, 
-        callback: impl FnOnce(& StackList<'a, T>) -> U,
+        prev: Option<&'a StackList<'a, T>>,
+        data: T,
+        callback: impl FnOnce(&StackList<'a, T>) -> U,
     ) -> U {
         let mut list = StackList { data, prev };
         callback(&mut list)
@@ -32,7 +32,6 @@ impl<'a, T> Iterator for Iter<'a, T> {
         })
     }
 }
-
 
 #[cfg(test)]
 mod test {
@@ -73,5 +72,4 @@ mod test {
             })
         })
     }
-
 }
